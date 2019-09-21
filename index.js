@@ -76,9 +76,13 @@ http.interceptor.error = (response) => {
 }
 
 export function get(url, params) {
-    return http.get(url, params)
+    return http.get(url, params).then(response => {
+      return response.data
+    })
 }
 
 export function post(url, params) {
-    return http.post(url, params)
+    return http.post(url, params).then(response => {
+      return response.data
+    })
 }
