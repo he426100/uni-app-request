@@ -1,7 +1,7 @@
 **插件使用说明**
 
 - 基于 Promise 对象实现更简单的 request 使用方式，支持请求和响应拦截
-- 下载后放到项目 common/request 目录下
+- 下载后放到项目 js_sdk 目录下（使用HBuild X导入插件即可）
 
 ## 1. 配置 
 
@@ -13,7 +13,7 @@
 /**
  * @/api/user.js
  */
-import { get, post } from '@/common/request'
+import { get, post } from '@/js_sdk/mrpzx-request'
 
 export function login(username, password) {
   return post('user/login', { username, password })
