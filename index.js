@@ -1,5 +1,5 @@
 import http from './http'
-import store from '../store'
+import store from '../../store'
 
 http.config.baseUrl = "/api/"
 
