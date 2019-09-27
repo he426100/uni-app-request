@@ -1,3 +1,25 @@
+function serialize (obj, prefix) {
+  const str = []
+  let p
+  if (obj.length === 0) {
+    //  str.push(encodeURIComponent(prefix) + '=1')
+  } else {
+    for (p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        const k = prefix ? prefix + '[' + p + ']' : p
+        let v = obj[p]
+        if (v instanceof Date) {
+          v = parseTime(v)
+        }
+        str.push((v !== null && typeof v === 'object') ? serialize(v, k) : encodeURIComponent(k) + '=' + encodeURIComponent(
+          v))
+      }
+    }
+  }
+
+  return str.join('&')
+}
+
 /**
  * 通用uni-app网络请求
  *
