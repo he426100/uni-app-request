@@ -33,6 +33,10 @@ export default {
         options.data = options.data || {}
         options.method = options.method || this.config.method
 
+        if (!(options.data instanceof FormData)) {
+            options.data = serialize(options.data)
+        }
+
         return new Promise((resolve, reject) => {
             options.complete = (response) => {
                 if (response.statusCode == 200) {
