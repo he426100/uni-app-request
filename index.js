@@ -24,6 +24,7 @@ http.interceptor.response = (response) => {
     if (!res.status.succeed) {
         uni.showToast({
             title: res.status.error_desc || res.status.error_code,
+            icon: 'none',
             duration: 2000
         })
 
@@ -44,7 +45,7 @@ http.interceptor.response = (response) => {
                 }
             })
         }
-        return Promise.reject('error')
+        return Promise.reject(res.status.error_desc || res.status.error_code || 'error')
     }
     return response;
 }
