@@ -5,7 +5,8 @@
 
 ## 1. 配置 
 
-- 请参考 [uni-app跨域解决方案（踩坑）](https://blog.csdn.net/paopao79085/article/details/91948809) 配置跨域方案
+- h5请参考 [uni-app跨域解决方案（踩坑）](https://blog.csdn.net/paopao79085/article/details/91948809) 配置跨域方案
+- App不存在跨域问题，直接使用接口地址即可
 
 ## 2. 使用示例
 
