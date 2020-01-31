@@ -38,7 +38,9 @@ export default {
         responseType: "text",
         success() {},
         fail() {},
-        complete() {}
+        complete() {},
+        /* 如设置为true 则不显示loading */
+        silence: false
     },
     interceptor: {
         request: null,
@@ -54,6 +56,7 @@ export default {
         options.url = options.baseUrl + options.url
         options.data = options.data || {}
         options.method = options.method || this.config.method
+        options.silence = options.silence || this.config.silence
 
         if (!(options.data instanceof FormData)) {
             options.data = serialize(options.data)
@@ -61,6 +64,9 @@ export default {
 
         return new Promise((resolve, reject) => {
             options.complete = (response) => {
+                if(!options.silence) {
+                    uni.hideLoading()
+                }
                 if (response.statusCode == 200) {
                     if (this.interceptor.response) {
                         response = this.interceptor.response(response)
@@ -78,6 +84,11 @@ export default {
 
             if (this.interceptor.request) {
                 this.interceptor.request(config)
+            }
+            if(!options.silence) {
+                uni.showLoading({
+                    title: '加载中...'
+                })
             }
 
             uni.request(config);

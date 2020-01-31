@@ -7,6 +7,7 @@ http.config.baseUrl = "/api/"
 http.interceptor.request = (config) => {
     //添加通用参数
     config.header['X-AUTH-DEVICE'] = ''
+    delete config.header['X-AUTH-TOKEN']
 
     if (store.getters.token) {
         config.header['X-AUTH-TOKEN'] = store.getters.token // 让每个请求携带自定义token 请根据实际情况自行修改
@@ -76,14 +77,14 @@ http.interceptor.error = (response) => {
     return Promise.reject(response)
 }
 
-export function get(url, params) {
-    return http.get(url, params).then(response => {
+export function get(url, params, options) {
+    return http.get(url, params, options).then(response => {
       return response.data
     })
 }
 
-export function post(url, params) {
-    return http.post(url, params).then(response => {
+export function post(url, params, options) {
+    return http.post(url, params, options).then(response => {
       return response.data
     })
 }
